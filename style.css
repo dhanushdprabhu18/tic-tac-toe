@@ -1,0 +1,112 @@
+
+/* Body with Moving Gradient Background */
+body {
+  background: linear-gradient(45deg, #ff6f61, #6a5acd, #3b8d99, #ff9f00);
+  background-size: 400% 400%;
+  animation: gradientMotion 15s ease infinite;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  transition: background 1s ease;
+}
+
+/* Container Styling */
+.container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+/* Game Grid */
+.game {
+  height: 60vmin;
+  width: 60vmin;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1vmin;
+  position: relative;
+}
+
+/* Individual Game Box */
+.box {
+  height: 18vmin;
+  width: 18vmin;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  font-size: 6vmin;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+}
+
+.box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Button Styling */
+#reset-btn,
+#new-btn {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: #333;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#reset-btn:hover,
+#new-btn:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+/* Winning Message */
+#msg {
+  font-size: 5vmin;
+  font-weight: bold;
+  margin-top: 2rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Message Container */
+.msg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  height: 100vh;
+}
+
+/* Hidden State */
+.hide {
+  display: none;
+}
