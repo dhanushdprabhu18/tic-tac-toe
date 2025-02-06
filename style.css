@@ -1,28 +1,44 @@
-
-/* Body with Moving Gradient Background */
 body {
-  background: linear-gradient(45deg, #ff6f61, #6a5acd, #3b8d99, #ff9f00);
+  background: linear-gradient(45deg, #ff6f61, #6a5acd, #3b8d99, #4417e7);
   background-size: 400% 400%;
   animation: gradientMotion 15s ease infinite;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   color: #fff;
   text-align: center;
-  transition: background 1s ease;
+  overflow: hidden;
 }
 
-/* Container Styling */
+@keyframes gradientMotion {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .container {
-  height: 80vh;
+  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  text-align: center;
 }
 
-/* Game Grid */
+/* Floating Particles */
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-200px); opacity: 0; }
+}
+
 .game {
   height: 60vmin;
   width: 60vmin;
@@ -30,83 +46,141 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1vmin;
+  gap: 1.2vmin;
   position: relative;
 }
 
-/* Individual Game Box */
 .box {
   height: 18vmin;
   width: 18vmin;
   border-radius: 10px;
   border: none;
   background-color: #ffffff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   font-size: 6vmin;
   color: #333;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Glowing Effect */
+.box.clicked {
+  box-shadow: 0 0 15px #ff4500, 0 0 30px #ff4500;
+}
+
+/* Winning Animation */
+.box.winner {
+  background: linear-gradient(45deg, #ffcc00, #ff4500);
+  animation: pulseGlow 1s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px #ff4500; }
+  100% { box-shadow: 0 0 25px #ffcc00; }
 }
 
 .box:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Button Styling */
+/* Buttons with Neon Glow */
 #reset-btn,
 #new-btn {
   padding: 1rem 2rem;
   font-size: 1.5rem;
-  background-color: #333;
+  background: linear-gradient(135deg, #ff8c00, #ff0080);
   color: #fff;
   border-radius: 12px;
   border: none;
   margin-top: 2rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.4s ease;
+  text-transform: uppercase;
 }
 
 #reset-btn:hover,
 #new-btn:hover {
-  background-color: #444;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff0080, #ff8c00);
+  transform: scale(1.1);
 }
 
-/* Winning Message */
 #msg {
   font-size: 5vmin;
   font-weight: bold;
   margin-top: 2rem;
-  color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   animation: fadeInOut 3s ease-in-out;
 }
 
 @keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-/* Message Container */
-.msg-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  height: 100vh;
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
 }
 
-/* Hidden State */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #ffcc00;
+  opacity: 0.8;
+  animation: confettiFall 4s linear infinite;
+}
+
 .hide {
   display: none;
+}
+
+.float-effect {
+  animation: floating 5s infinite ease-in-out;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+
+.designed-by {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  animation: floating 3s infinite ease-in-out;
+}
+
+.designed-by a {
+  text-decoration: none;
+  color: #FFD700;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.designed-by a:hover {
+  color: #ff4500;
+  transform: scale(1.1);
+}
+
+.linkedin-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.designed-by a:hover .linkedin-icon {
+  transform: scale(1.3);
 }
